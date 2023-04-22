@@ -1,0 +1,261 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Control Panel</h3>
+<hr>
+<p>
+    Selamat Datang, <small>{{request.user.username}}</small>
+</p>
+  
+
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link " href="#pop">Pop Indonesia</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#dangdut">Dangdut</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#manca">Manca</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="#article">Article</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="#setting">Setting</a>
+  </li>
+</ul>
+
+<div class="tab-content" >
+  <div id="pop" class="tab-pane fade " >             
+             <h2>10 Tangga Lagu Pop Indonesia</h2>
+             <a class = "btn btn-danger" href = "{% url 'article:addsongpop' %}">Tambah Lagu 
+</a>
+         {% if pops %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Judul</th>
+              <th scope="col">Penyanyi</th>
+              <th scope="col">Tgl Update</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for song in pops %}
+            <tr>
+              <th scope="row">{{song.nomer}}</th>
+              <td>{{song.judul}}</td>
+              <td>{{song.penyanyi}}</td>
+              <td>{{song.tglupdate}}</td>
+              <td><a href="{% url 'article:songupdate' song.id %}" class = "btn 
+btn-success">Update</a></td>
+              <td><a href="{% url 'article:songdelete' song.id %}" class = "btn 
+btn-danger">Delete</a> </td>
+               
+            </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+        
+        {% endif %}
+
+   </div>
+   <div id="dangdut" class="tab-pane fade " >
+    <a class = "btn btn-danger" href = "{% url 'article:addsongdangdut' %}" 
+id="klikdangdut">Tambah Lagu </a>
+        <h2>10 Tangga Lagu Dandut</h2>
+        {% if dangduts %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Judul</th>
+              <th scope="col">Penyanyi</th>
+              <th scope="col">Tgl Update</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for song in dangduts %}
+            <tr>
+              <th scope="row">{{song.nomer}}</th>
+              <td>{{song.judul}}</td>
+              <td>{{song.penyanyi}}</td>
+              <td>{{song.tglupdate}}</td>
+              <td><a href="{% url 'article:songupdate' song.id %}" class = "btn 
+btn-success">Update</a></td>
+              <td><a href="{% url 'article:songdelete' song.id %}" class = "btn 
+btn-danger">Delete</a> </td>
+               
+            </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+        
+        {% endif %}
+
+
+
+    </div>
+    <div id="manca" class="tab-pane fade " >
+      <a class = "btn btn-danger" href = "{% url 'article:addsongmanca' %}">Tambah Lagu </a>
+        <h2>10 Tangga Lagu Manca Negara</h2>
+        {% if mancas %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Judul</th>
+              <th scope="col">Penyanyi</th>
+              <th scope="col">Tgl Update</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for song in mancas %}
+            <tr>
+              <th scope="row">{{song.nomer}}</th>
+              <td>{{song.judul}}</td>
+              <td>{{song.penyanyi}}</td>
+              <td>{{song.tglupdate}}</td>
+              <td><a href="{% url 'article:songupdate' song.id %}" class = "btn 
+btn-success">Update</a></td>
+              <td><a href="{% url 'article:songdelete' song.id %}" class = "btn 
+btn-danger">Delete</a> </td>
+               
+            </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+        
+        {% endif %}
+
+    </div>     
+        
+    <div id="article" class="tab-pane fade " >
+      
+        <h1>Menu Article</h1>
+        
+        
+        <a class = "btn btn-danger" href = "{% url 'article:addarticle' %}">Tambah Article 
+</a>
+        
+        {% if articles %}
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Penulis</th>
+                    <th scope="col">History</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for article in articles %}
+                  <tr>
+                    <th scope="row">{{article.id}}</th>
+                    <td><a href="{% url 'article:detail' article.id 
+%}">{{article.title}}</a></td>
+                    <td>{{article.author.username}}</td>
+                    <td>{{article.created_date}}</td>
+                    <td><a href="{% url 'article:update' article.id %}" class = "btn 
+btn-success">Update</a></td>
+                    <td><a href="{% url 'article:delete' article.id %}" class = "btn 
+btn-danger">Delete</a> </td>
+                      
+                  </tr>
+                  {% endfor %}
+                  
+                </tbody>
+              </table>
+        {% else %}
+
+        <div class = "alert alert-danger">
+            
+        Anda belum memiliki artikel ..
+        
+        </div>
+        {% endif %}
+        </div>
+
+
+        <div id="setting" class="tab-pane fade " >
+            <h2>Link Media Sosial</h2>
+             {% if medsoss %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Link</th>
+                  <th scope="col">Update</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for medsos in medsoss %}
+                <tr>
+                  <th scope="row">{{medsos.nomer}}</th>
+                  <td>{{medsos.name}}</td>
+                  <td>{{medsos.link}}</td>
+                  <td><a href="{% url 'article:medsosupdate' medsos.id %}" class = "btn 
+btn-success">Update</a></td>
+                   
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            </table>
+            
+            {% endif %} 
+    
+        </div>
+
+
+
+
+</div>
+
+
+<script>
+
+    $(document).ready(function(){
+
+     $(".nav-pills a").click(function(){
+       $(this).tab('show');
+
+     });
+    });
+
+
+
+   </script>
+     <script>
+        $(document).ready(function(){
+            {% if tipe %}
+             $('.nav-pills a[href="#{{tipe}}"]').tab('show');
+            {% else %}
+            $('.nav-pills a[href="#pop"]').tab('show');
+            {% endif %}   
+
+
+        });
+     </script> 
+    
+   
+
+
+
+
+{% endblock body %}
+
+

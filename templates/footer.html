@@ -1,0 +1,110 @@
+
+{% load static %}
+
+<div  class="footer shadow-lg ">
+    <h2 style="margin-left: 20px;">Article</h2>
+    <div class="row" style="margin-left: 20px;margin-right: 20px;" >
+      
+      {% for article in articles %} 
+  
+
+    <div class="col-md-3" >       
+             <a href="{% url 'article:detail' article.id %}">
+ 
+            {% if article.article_image %}
+            <img src="{{article.article_image.url}}" alt="Lights" class="card-img-top"  style="width:100%;height:150px;"> </a>
+             {% endif %}
+
+
+              <span style="color :darkturquoise  ;">{{article.title}}</span>
+              <div  style="padding-left: 20px;color: cadetblue;">  
+              <span >
+                {{article.content|safe|truncatewords:20}}
+              </span>
+             <br>
+            <a style ="float : right;" href="{% url 'article:detail' article.id %}" class ="btn btn-success btn-sm">Read More</a>           
+          </div>
+         
+   
+    </div> 
+
+
+      {% endfor %}
+
+    </div>
+  </div>
+
+
+
+
+
+
+<div  class="footer shadow-lg ">
+    <div  class="container">
+        <div class="row">
+
+
+        
+      
+     
+         <div class="col-7 ">
+
+           <div style="padding: 20px;">
+                <div style="background: url({% static 'img/world-map.png' %}) no-repeat center center; background-size: 100%;">
+                    <address>
+                        Perumahan Gajah Mada Blok CC No, RW.9, Pelem, Pare, Kediri, East Java 64213							</address>
+                    <br />
+                    <abbr title="Phone Number"><strong style="color: #fff; text-decoration: none;">Phone:</strong></abbr> Telp 0811-3719-992<br>
+                    <!-- <abbr title="Fax"><strong style="color: #fff; text-decoration: none;">Fax:</strong></abbr> Fax 0354 395800    <br> -->
+                    <abbr title="Email Address"><strong style="color: #fff; text-decoration: none;">Email:</strong></abbr> racitafmkediri@gmail.com						
+                </div>
+                
+         </div> 
+         </div>
+
+
+         <div class="col-1 col_footer_center mobile" >
+            <a  href="{{youtube}}">
+            <img  src="{% static 'img/youtube.png'%}" alt="" >
+            </a>
+         </div>
+         <div class="col-1 col_footer_center mobile " >
+            <a  href="{{instagram}}">
+            <img  src="{% static 'img/instagram.png'%}" alt="" >
+            </a>
+         </div>
+         <div class="col-1 col_footer_center mobile"  >
+            <a  href="{{facebook}}">
+            <img  src="{% static 'img/facebook.png'%}" alt="" >
+            </a>
+         </div>
+         <div class="col-1 col_footer_center mobile"  >
+            <a  href="{{twitter}}">
+            <img  src="{% static 'img/twitter.png'%}" alt="" >
+            </a>
+         </div>         
+         <div class="col-1 col_footer_center mobile">
+             <a  href="{{apk}}">
+            <img  src="{% static 'img/android.png'%}" alt="" >
+            </a> 
+   
+
+</div>
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer-bottom">
+    <div class="row">
+        <div class="container">
+            Copyright &copy; 2020 All rights reserved by <strong style="color: #fff;">Racita FM Kediri Streaming Radio Online</strong>
+        </div>
+    </div>
+</div> 
+  
+
